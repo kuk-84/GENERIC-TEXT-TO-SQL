@@ -11,6 +11,7 @@
 
 
 
+                                                                                                                               
+## for reference and pretrained models and data downoad and store in data_and_model directory
 
-https://github.com/guotong1988/NL2SQL-RULE/tree/master?tab=readme-ov-file#motivation                                                                                                                                   
-# for reference and pretrained models and data downoad and store in data_and_model directory
+https://github.com/guotong1988/NL2SQL-RULE/tree/master?tab=readme-ov-file#motivation    
