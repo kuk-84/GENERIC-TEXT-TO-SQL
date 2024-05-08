@@ -9,7 +9,8 @@ Two vectors are:
 1. We use the matching information of the table cells and question string to construct a vector where its length is the same as the question length.
    This question vector mainly improves the performance of WHERE-VALUE inference results.
 2. We use the matching information of all the table headers and the question string to construct a vector where its length
-   is the same as the table headers' length. 
+   is the same as the table headers' length.
+   
 
 ![image](https://github.com/kuk-84/GENERIC-TEXT-TO-SQL/assets/89506759/0a63ba7c-ae2c-4736-9ed7-55de66ab7065)
 ![image](https://github.com/kuk-84/GENERIC-TEXT-TO-SQL/assets/89506759/fcd7b650-08aa-4a16-80c5-cb3839743a2a)
@@ -20,9 +21,9 @@ Two vectors are:
 
 
 
-#### put all jsonl files in data and model as well.
-### first run output_entity.py for generating train_knowledge.jsonl and dev_knowledge.jsonl and train the model by running train_only.py
-### then run app.py for testing.
+#### put all jsonl and csv files in data and model as well.
+#### first run output_entity.py for generating train_knowledge.jsonl and dev_knowledge.jsonl and train the model by running train_only.py
+#### then run app.py for testing.
                                                                                                                                
-## for reference and pretrained models and data downoad and store in data_and_model directory.
+#### For reference and pretrained models and data downoad and store in data_and_model directory.
 https://github.com/guotong1988/NL2SQL-RULE/tree/master?tab=readme-ov-file#motivation    
