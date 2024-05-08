@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Question and CSV Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Change font if needed */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            height: 100vh;
+            background-color: #f0f0f0; /* Light gray background */
+        }
+        .form-container {
+            text-align: center; /* Center content inside the container */
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Drop shadow */
+        }
+        .form-container h1 {
+            color: #333; /* Dark gray color */
+            font-size: 24px; /* Increase font size */
+            font-weight: bold; /* Bold font */
+            margin-bottom: 20px; /* Add some space below the header */
+        }
+        .form-container label {
+            display: block;
+            margin-bottom: 10px;
+            color: #000; /* Black color */
+            font-weight: bold; /* Bold font */
+        }
+        .form-container input[type="text"],
+        .form-container input[type="file"],
+        .form-container button {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc; /* Light gray border */
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .form-container button {
+            width: auto; /* Adjust button width */
+            font-size: 16px; /* Increase font size */
+            
+        }
+        .image-container img {
+            display: block;
+            margin: 0 auto 20px; /* Center the image horizontally and add some space below */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Drop shadow */
+            width: 80%; /* Reduce image width */
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <img src="/static/images/heading.jpg" alt="Heading Image"> <!-- Change 'heading.jpg' to your actual image filename -->
+        <h1>Question and CSV Upload</h1>
+        <form action="/submit_data" method="post" enctype="multipart/form-data">
+            <label for="csv_file">Upload CSV File that represents your database:</label>
+            <input type="file" id="csv_file" name="csv_file" accept=".csv" required><br><br>
+            <label for="question">Text Query for retrieval:</label>
+            <input type="text" id="question" name="question" required><br><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

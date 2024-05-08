@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Query Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center; /* Center align content */
+        }
+        h1 {
+            color: #333; /* Dark gray color */
+            font-size: 24px; /* Increase font size */
+        }
+        p {
+            margin-top: 10px; /* Add some space above paragraphs */
+        }
+        strong {
+            font-weight: bold; /* Bold font */
+        }
+        /* CSS to center the table */
+    </style>
+</head>
+<body>
+    <h1>Query Result</h1>
+    <p><strong>Query:</strong> {{ query }}</p>
+    <p><strong>Answer:</strong> {{ ans }}</p>
+    <!-- <p><strong>Table:</strong> {{ table }}</p> -->
+    <p><strong>{{table_id}}</strong></p>
+    <!-- <p><strong>{{table[table_id]['header']}}</strong></p>
+    <p><strong>{{table[table_id]['rows'][0]}}</strong></p>
+    {% for row in table[table_id]['rows'] %} <p>{{row}}</p>
+    {% endfor %} -->
+    <table id="{{ table_id }}" style="margin: 0 auto">
+        <!-- Table headers and data will be inserted here -->
+        <thead>
+            <tr>
+                {% for column in table[table_id]['header'] %}
+                    <th>{{ column }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in table[table_id]['rows'] %}
+                <tr>
+                    {% for cell in row %}
+                        <td>{{ cell }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+ 
+      
+</body>
+</html>
