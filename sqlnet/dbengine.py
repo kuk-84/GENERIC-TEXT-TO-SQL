@@ -104,39 +104,40 @@ class DBEngine:
             c, t = tup.split()
             schema[c] = t
 
-        select = f'col{select_index}'
+        select = 'col{}'.format(select_index)
         agg = agg_ops[aggregation_index]
         if agg:
-            select = f'{agg}({select})'
+            select = '{}({})'.format(agg, select)
 
         where_clause = []
         where_values = []
         for col_index, op, val in conditions:
             if lower and isinstance(val, str):
                 val = val.lower()
-            if schema[f'col{col_index}'] == 'real' and not isinstance(val, (int, float)):
+            if schema['col{}'.format(col_index)] == 'real' and not isinstance(val, (int, float)):
                 try:
                     val = float(val)
                 except ValueError:
-                    val = None  # Replace with appropriate handling
-            where_clause.append(f'col{col_index} {cond_ops[op]} ?')
+                    pass
+            where_clause.append('col{} {}'.format(col_index, cond_ops[op]))
             where_values.append(val)
 
         where_str = ''
         if where_clause:
             where_str = 'WHERE ' + ' AND '.join(where_clause)
+        #print(where_clause)
+        #print(where_str)
+        # Ensure WHERE clause is added only if conditions exist
+        query = f'SELECT {select} AS result FROM {table_id} {where_str} "{where_values[0]}"'
 
-        print("Constructed WHERE clause:", where_str)
-        print("WHERE values:", where_values)
-
-        query = f'SELECT {select} AS result FROM {table_id} {where_str}'
         print("Constructed SQL query:", query)
-
-        cursor.execute(query, where_values)
+        print("WHERE values:", where_values)
+        #cursor.execute(query, tuple(where_values))
+        cursor.execute(query)
         out = cursor.fetchall()
         print(out)
-
         return [o[0] for o in out]
+        conn.commit()
 
         # return [o.result for o in out]
     
@@ -179,12 +180,23 @@ class DBEngine:
 
     #     return [o.result for o in out], query
     def execute_return_query(self, table_id, select_index, aggregation_index, conditions, lower=True):
+        #print("table_id")
+        #print(table_id)
+        #print("inside esecute_retur_query")
         if not table_id.startswith('table'):
             table_id = 'table_{}'.format(table_id.replace('-', '_'))
-            
+        if self.conn is None:
+            print("Connection is not established.")
+            return None
         cursor = self.conn.cursor()
+        table_id="table_"+table_id[8:]
+        print("table_id")
+        print(table_id)
+        #table_id="table_ftable1"
+        # cursor.execute('SELECT sql from sqlite_master WHERE tbl_name = ?', (table_id,))
         cursor.execute('SELECT sql from sqlite_master WHERE tbl_name = ?', (table_id,))
         table_info = cursor.fetchone()[0]
+        print(table_info)
         
         schema_str = table_info.split('(')[1].split(')')[0]
         schema = {}
@@ -214,13 +226,19 @@ class DBEngine:
         if where_clause:
             where_str = 'WHERE ' + ' AND '.join(where_clause)
         
-        
-        query = 'SELECT {} AS result FROM {} {}'.format(select, table_id, where_str)
-        print(query)
-        cursor.execute(query, where_values)
+        #where_values[0]="Company A"
+        # query = 'SELECT {} AS result FROM {} {}'.format(select, table_id, where_str)
+        query = f'SELECT {select} AS result FROM {table_id} {where_str} "{where_values[0]}"'
+        #print(where_values)
+        print("query")
+        # print(query)
+        cursor.execute(query)
         out = cursor.fetchall()
+        # print("out")
+        # print(out)
 
-        return [o[0] for o in out], query
+        #return [o[0] for o in out], query
+        return out, query
 
     
     # def show_table(self, table_id):
