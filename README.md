@@ -1,12 +1,10 @@
 # GENERIC-TEXT-TO-SQL
 
 Our problem statement is generating structured query language (SQL) from the generic text, with some modification in the Basic BERT Model. 
-This would improve the accuracy to 3.7%  then the basic BERT Model.
-The ultimate aim of this approach is to enhance the model's comprehension of the underlying data, 
-thereby improving its accuracy in generating SQL queries that precisely capture the user's intent.
-
-We leverage semantic ability to match information of the table cells ,table header and question string to 
-construct external vector emebeddings for BERT to directly take insights from and improve WHERE value prediction accuracy.
+The ultimate aim of this approach is to enhance the model's comprehension of the underlying data, thereby improving its accuracy in generating 
+SQL queries that precisely capture the user's intent.
+We leverage semantic ability to match information of the table cells ,table header and question string to construct external vector emebeddings
+for BERT to directly take insights from and improve WHERE value prediction accuracy.
    
 # ![image](https://github.com/kuk-84/GENERIC-TEXT-TO-SQL/assets/89506759/05059014-3230-45fc-a0ba-8e3e16a4da6a)" 
 # ![image](https://github.com/kuk-84/GENERIC-TEXT-TO-SQL/assets/89506759/4f32c3a4-fe64-4151-958f-76b9beeaf6e3)
